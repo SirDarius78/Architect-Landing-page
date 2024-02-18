@@ -1,0 +1,64 @@
+body {
+    @apply antialiased;
+}
+
+header {
+    @apply bg-white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+nav ul {
+    @apply flex space-x-4;
+}
+
+nav ul li a {
+    @apply hover:underline text-gray-800;
+}
+
+@media (max-width: 768px) {
+
+    /* Estilos para pantallas pequeñas */
+    header {
+        @apply bg-black text-white;
+    }
+
+    nav ul {
+        @apply flex-col space-y-2;
+    }
+
+    nav ul li a {
+        @apply block py-2 px-4 hover:bg-gray-200 text-gray-900;
+    }
+}
+
+/* Estilos para el botón de regreso al menú principal */
+.back-to-home {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4a90e2;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-to-home:hover {
+    background-color: #357cd5;
+}
+
+.project-images img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Espacio entre imágenes */
+}
