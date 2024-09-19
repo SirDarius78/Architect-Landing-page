@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const targetId = this.getAttribute("href");
             // Solo ejecuta scroll si el selector es válido
-            if (document.querySelector(targetId)) {
+            if (targetId !== "#" && document.querySelector(targetId)) {
                 document.querySelector(targetId).scrollIntoView({
                     behavior: "smooth",
                 });
