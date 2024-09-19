@@ -18,11 +18,11 @@
                     <li><a href="./CVRosana.pdf" class="hover:underline text-white">Sobre mi</a></li>
                     <li><a href="./portafolio.html" class="hover:underline text-white">Portafolio</a></li>
                     <li>
-                        <a href="#" id="whatsappLink" class="text-white hover:text-blue-500" title="Contactar por WhatsApp">
+                        <a href="https://wa.me/5491133212191" class="text-white hover:text-blue-500" title="Contactar por WhatsApp">
                             <i class="fab fa-whatsapp fa-lg"></i> <!-- Icono de WhatsApp -->
                         </a>
                     </li>
-                    <li><a href="#consulta" class="hover:underline text-white" id="consultaButton">Consulta</a></li>
+                    <li><a href="#consulta" class="hover:underline text-white">Consulta</a></li>
                 </ul>
             </nav>
         </div>
@@ -35,7 +35,7 @@
                     <h1 class="text-5xl font-bold mb-4 text-white">Arquitecta <span class="text-blue-500">Rosana Suarez</span></h1>
                     <h2 class="text-2xl mb-4 text-white">Especialista en Investigación Proyectual - Orientación Vivienda</h2>
                     <p class="text-gray-300 mb-8">Investigación, experimentación y gestión sobre el habitat domestico y los modos de habitar para proyectos de vivienda estatal o privada</p>
-                    <button onclick="handleWhatsAppClick()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <button onclick="handleWhatsAppClick()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         <i class="fab fa-whatsapp"></i> <!-- Icono de WhatsApp -->
                         Contacto
                     </button>
@@ -44,12 +44,9 @@
         </section>
 
         <!-- Formulario de Consulta -->
-        <section id="consulta" class="bg-gray-100 p-8 hidden" id="consultaSection">
-            <div class="container mx-auto relative">
+        <section id="consulta" class="bg-gray-100 p-8">
+            <div class="container mx-auto">
                 <h2 class="text-3xl font-bold mb-4">Formulario de Consulta</h2>
-                <button id="closeForm" class="absolute top-0 right-0 text-red-500 hover:text-red-700" onclick="toggleConsulta()">
-                    <i class="fas fa-times"></i>
-                </button>
                 <form id="consultaForm">
                     <div class="mb-4">
                         <label class="block text-gray-700">¿Qué tipo de trabajo necesitas?</label>
@@ -82,6 +79,20 @@
     </main>
 
     <script src="app.js"></script>
+    <script>
+        function sendWhatsAppMessage() {
+            const tipoTrabajo = document.getElementById('tipoTrabajo').value;
+            const presupuesto = document.getElementById('presupuesto').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const descripcion = document.getElementById('descripcion').value;
+
+            const phoneNumber = '5491133212191'; // Reemplaza con tu número de teléfono
+            const message = `Consulta:\nTipo de Trabajo: ${tipoTrabajo}\nPresupuesto: ${presupuesto}\nUbicación: ${ubicacion}\nDescripción: ${descripcion}`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
 
