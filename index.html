@@ -6,7 +6,6 @@
     <title>Rosana Suarez - Arquitecta</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Importación de Font Awesome -->
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <header class="bg-black shadow py-8">
@@ -17,6 +16,7 @@
                     <li><a href="./CVRosana.pdf" class="hover:underline text-white">Sobre mi</a></li>
                     <li><a href="./portafolio.html" class="hover:underline text-white">Portafolio</a></li>
                     <li><a href="#" onclick="handleWhatsAppClick()" class="hover:underline text-white">Contacto</a></li>
+                    <li><a href="#consulta" class="hover:underline text-white">Consulta</a></li> <!-- Enlace al formulario de consulta -->
                 </ul>
             </nav>
         </div>
@@ -29,23 +29,48 @@
                     <h1 class="text-5xl font-bold mb-4 text-white">Arquitecta <span class="text-blue-500">Rosana Suarez</span></h1>
                     <h2 class="text-2xl mb-4 text-white">Especialista en Investigación Proyectual - Orientación Vivienda</h2>
                     <p class="text-gray-300 mb-8">Investigación, experimentación y gestión sobre el habitat domestico y los modos de habitar para proyectos de vivienda estatal o privada </p>
-                    
-                    <!-- Botón de WhatsApp con ícono solamente -->
-                    <button onclick="handleWhatsAppClick()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
-                        <i class="fab fa-whatsapp fa-lg"></i>
+                    <button onclick="handleWhatsAppClick()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <i class="fab fa-whatsapp"></i> <!-- Icono de WhatsApp -->
+                        Contacto
                     </button>
                 </div>
             </div>
         </section>
-    </main>
 
-    <script>
-        // Función para abrir WhatsApp con el número indicado
-        const handleWhatsAppClick = () => {
-            const phoneNumber = '5491133212191'; // Reemplaza por el número real con el código de país
-            window.open(`https://wa.me/${phoneNumber}`, '_blank');
-        };
-    </script>
+        <!-- Formulario de Consulta -->
+        <section id="consulta" class="bg-gray-100 p-8">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-4">Formulario de Consulta</h2>
+                <form action="mailto:tuemail@gmail.com" method="post" enctype="text/plain">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">¿Qué tipo de trabajo necesitas?</label>
+                        <select name="tipoTrabajo" class="form-select mt-1 block w-full">
+                            <option value="remodelar">Remodelar</option>
+                            <option value="reparar">Reparar</option>
+                            <option value="construir">Construir</option>
+                            <option value="pintar">Pintar</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Presupuesto aproximado</label>
+                        <input type="text" name="presupuesto" class="form-input mt-1 block w-full" placeholder="Ej. $10,000">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Ubicación del trabajo</label>
+                        <input type="text" name="ubicacion" class="form-input mt-1 block w-full" placeholder="Ciudad y provincia">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Descripción adicional</label>
+                        <textarea name="descripcion" class="form-textarea mt-1 block w-full" rows="3" placeholder="Detalles adicionales sobre el proyecto..."></textarea>
+                    </div>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Enviar Consulta
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <script src="app.js"></script>
 </body>
