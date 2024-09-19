@@ -8,7 +8,7 @@
     <link href="styles.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        /* Estilos para el formulario de consulta */
+        /* Estilos para el modal */
         .modal {
             display: none; /* Ocultar por defecto */
             position: fixed;
@@ -18,7 +18,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.75); /* Fondo semi-transparente */
+            background-color: rgba(0, 0, 0, 0.75); /* Fondo semi-transparente */
         }
         .modal-content {
             background-color: white;
@@ -28,6 +28,18 @@
             width: 80%;
             max-width: 500px;
             border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -39,16 +51,8 @@
                 <ul class="flex space-x-4">
                     <li><a href="./CVRosana.pdf" class="hover:underline text-white">Sobre mi</a></li>
                     <li><a href="./portafolio.html" class="hover:underline text-white">Portafolio</a></li>
-                    <li>
-                        <a href="#" onclick="handleWhatsAppClick()" class="hover:underline text-white">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <button onclick="openModal()" class="bg-green-500 text-white p-2 rounded-full cursor-pointer">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </li>
+                    <li><a href="#" onclick="handleWhatsAppClick()" class="hover:underline text-white">Contacto</a></li>
+                    <li><button onclick="openModal()" class="hover:underline text-white">Consulta</button></li> <!-- Botón para abrir el modal -->
                 </ul>
             </nav>
         </div>
@@ -60,73 +64,81 @@
                 <div class="w-full md:w-1/2 lg:w-2/5">
                     <h1 class="text-5xl font-bold mb-4 text-white">Arquitecta <span class="text-blue-500">Rosana Suarez</span></h1>
                     <h2 class="text-2xl mb-4 text-white">Especialista en Investigación Proyectual - Orientación Vivienda</h2>
-                    <p class="text-gray-300 mb-8">Investigación, experimentación y gestión sobre el habitat domestico y los modos de habitar para proyectos de vivienda estatal o privada </p>
+                    <p class="text-gray-300 mb-8">Investigación, experimentación y gestión sobre el hábitat doméstico y los modos de habitar para proyectos de vivienda estatal o privada.</p>
+                    <button onclick="handleWhatsAppClick()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <i class="fab fa-whatsapp"></i> Contacto
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- Modal para consulta -->
-        <div id="consultationModal" class="modal">
+        <!-- Modal para el formulario de consulta -->
+        <div id="consultaModal" class="modal">
             <div class="modal-content">
-                <span onclick="closeModal()" class="close">&times;</span>
-                <h2 class="text-2xl mb-4">Consulta</h2>
-                <form id="consultationForm">
-                    <label class="block mb-2" for="projectType">¿Qué tipo de proyecto deseas realizar?</label>
-                    <select id="projectType" class="border border-gray-400 rounded p-2 w-full">
-                        <option value="remodelar">Remodelar</option>
-                        <option value="reparar">Reparar</option>
-                        <option value="construir">Construir</option>
-                        <option value="pintar">Pintar</option>
-                    </select>
-                    <label class="block mb-2 mt-4" for="budget">¿Cuál es tu presupuesto?</label>
-                    <input type="text" id="budget" class="border border-gray-400 rounded p-2 w-full" placeholder="Ingresa tu presupuesto">
-                    <label class="block mb-2 mt-4" for="location">Ubicación del trabajo:</label>
-                    <input type="text" id="location" class="border border-gray-400 rounded p-2 w-full" placeholder="Ingresa la ubicación">
-                    <label class="block mb-2 mt-4" for="city">Ciudad:</label>
-                    <input type="text" id="city" class="border border-gray-400 rounded p-2 w-full" placeholder="Ingresa la ciudad">
-                    <label class="block mb-2 mt-4" for="province">Provincia:</label>
-                    <input type="text" id="province" class="border border-gray-400 rounded p-2 w-full" placeholder="Ingresa la provincia">
-                    <button type="button" onclick="sendMessage()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 class="text-2xl font-bold mb-4">Formulario de Consulta</h2>
+                <form id="consultaForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700">¿Qué tipo de trabajo necesitas?</label>
+                        <select id="tipoTrabajo" name="tipoTrabajo" class="form-select mt-1 block w-full">
+                            <option value="remodelar">Remodelar</option>
+                            <option value="reparar">Reparar</option>
+                            <option value="construir">Construir</option>
+                            <option value="pintar">Pintar</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Presupuesto aproximado</label>
+                        <input type="text" id="presupuesto" name="presupuesto" class="form-input mt-1 block w-full" placeholder="Ej. $10,000">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Ubicación del trabajo</label>
+                        <input type="text" id="ubicacion" name="ubicacion" class="form-input mt-1 block w-full" placeholder="Ciudad y provincia">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Descripción adicional</label>
+                        <textarea id="descripcion" name="descripcion" class="form-textarea mt-1 block w-full" rows="3" placeholder="Detalles adicionales sobre el proyecto..."></textarea>
+                    </div>
+                    <button type="button" onclick="sendWhatsAppMessage()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Enviar Consulta
                     </button>
                 </form>
             </div>
         </div>
-
     </main>
 
     <script>
         const handleWhatsAppClick = () => {
-            const phoneNumber = '5491133212191';
+            const phoneNumber = '5491133212191'; // Reemplaza con tu número de teléfono
             window.open(`https://wa.me/${phoneNumber}`, '_blank');
         };
 
         const openModal = () => {
-            document.getElementById('consultationModal').style.display = 'block';
+            document.getElementById('consultaModal').style.display = 'block';
         };
 
         const closeModal = () => {
-            document.getElementById('consultationModal').style.display = 'none';
+            document.getElementById('consultaModal').style.display = 'none';
         };
 
-        const sendMessage = () => {
-            const projectType = document.getElementById('projectType').value;
-            const budget = document.getElementById('budget').value;
-            const location = document.getElementById('location').value;
-            const city = document.getElementById('city').value;
-            const province = document.getElementById('province').value;
+        const sendWhatsAppMessage = () => {
+            const tipoTrabajo = document.getElementById('tipoTrabajo').value;
+            const presupuesto = document.getElementById('presupuesto').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const descripcion = document.getElementById('descripcion').value;
 
-            const message = `Consulta: \nTipo de proyecto: ${projectType} \nPresupuesto: ${budget} \nUbicación: ${location} \nCiudad: ${city} \nProvincia: ${province}`;
-            const phoneNumber = '5491133212191';
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            const phoneNumber = '5491133212191'; // Reemplaza con tu número de teléfono
+            const message = `Consulta:\nTipo de Trabajo: ${tipoTrabajo}\nPresupuesto: ${presupuesto}\nUbicación: ${ubicacion}\nDescripción: ${descripcion}`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-            window.open(whatsappURL, '_blank');
+            window.open(url, '_blank');
             closeModal(); // Cerrar el modal después de enviar
         };
 
         // Cerrar el modal al hacer clic en el área fuera del modal
         window.onclick = function(event) {
-            const modal = document.getElementById('consultationModal');
+            const modal = document.getElementById('consultaModal');
             if (event.target == modal) {
                 closeModal();
             }
@@ -134,5 +146,3 @@
     </script>
 </body>
 </html>
-
-
