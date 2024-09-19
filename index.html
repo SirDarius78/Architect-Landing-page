@@ -16,7 +16,7 @@
                     <li><a href="./CVRosana.pdf" class="hover:underline text-white">Sobre mi</a></li>
                     <li><a href="./portafolio.html" class="hover:underline text-white">Portafolio</a></li>
                     <li><a href="#" onclick="handleWhatsAppClick()" class="hover:underline text-white">Contacto</a></li>
-                    <li><a href="#consulta" class="hover:underline text-white" onclick="toggleForm()">Consulta</a></li> <!-- Enlace al formulario de consulta -->
+                    <li><a href="#consulta" class="hover:underline text-white">Consulta</a></li> <!-- Enlace al formulario de consulta -->
                 </ul>
             </nav>
         </div>
@@ -38,7 +38,7 @@
         </section>
 
         <!-- Formulario de Consulta -->
-        <section id="consulta" class="bg-gray-100 p-8 hidden" id="consultaSection">
+        <section id="consulta" class="bg-gray-100 p-8">
             <div class="container mx-auto">
                 <h2 class="text-3xl font-bold mb-4">Formulario de Consulta</h2>
                 <form id="consultaForm">
@@ -68,18 +68,12 @@
                         Enviar Consulta
                     </button>
                 </form>
-                <button onclick="toggleForm()" class="mt-4 text-blue-500 hover:underline">Cerrar</button>
             </div>
         </section>
     </main>
 
     <script src="app.js"></script>
     <script>
-        function toggleForm() {
-            const formSection = document.getElementById('consultaSection');
-            formSection.classList.toggle('hidden');
-        }
-
         function sendWhatsAppMessage() {
             const tipoTrabajo = document.getElementById('tipoTrabajo').value;
             const presupuesto = document.getElementById('presupuesto').value;
