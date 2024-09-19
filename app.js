@@ -1,39 +1,41 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Smooth scrolling functionality for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
-            // Solo ejecuta scroll si el selector es válido
-            if (targetId !== "#" && document.querySelector(targetId)) {
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: "smooth",
-                });
-            }
-        });
-    });
-
-    // Function to handle opening WhatsApp link
-    const handleWhatsAppClick = () => {
-        const phoneNumber = '+5491133212191'; // Número de teléfono de WhatsApp
-        window.open(`https://wa.me/${phoneNumber}`, '_blank');
-    };
-
-    // Function to toggle the visibility of the consultation form
-    window.toggleConsulta = () => {
-        const consultaSection = document.getElementById('consultaSection');
-        consultaSection.classList.toggle('hidden');
-    };
-
-    // Attach the click handler to the consultation link
-    const consultaLink = document.getElementById('consultaLink');
-    consultaLink.addEventListener("click", function (e) {
-        e.preventDefault(); // Evitar el comportamiento predeterminado del enlace
-        toggleConsulta(); // Llama a la función para abrir o cerrar el formulario
+// Smooth scrolling functionality for navigation links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute("href");
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: "smooth",
+            });
+        }
     });
 });
 
-// Function to send WhatsApp message
+// Function to handle opening WhatsApp link
+const handleWhatsAppClick = () => {
+    const phoneNumber = '5491133212191'; // Número de teléfono de WhatsApp
+    window.open(`https://wa.me/${phoneNumber}`, '_blank');
+};
+
+// Toggle the visibility of the consultation form
+const toggleConsulta = () => {
+    const consultaSection = document.getElementById('consultaSection');
+    consultaSection.classList.toggle('hidden');
+};
+
+// Open the consultation form when the button is clicked
+document.getElementById('consultaButton').addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleConsulta();
+});
+
+// Close the consultation form when the close button is clicked
+document.getElementById('closeForm').addEventListener('click', (e) => {
+    toggleConsulta();
+});
+
+// Send WhatsApp message function
 function sendWhatsAppMessage() {
     const tipoTrabajo = document.getElementById('tipoTrabajo').value;
     const presupuesto = document.getElementById('presupuesto').value;
@@ -46,3 +48,4 @@ function sendWhatsAppMessage() {
 
     window.open(url, '_blank');
 }
+
