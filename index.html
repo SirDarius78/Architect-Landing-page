@@ -6,42 +6,6 @@
     <title>Rosana Suarez - Arquitecta</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        /* Estilos para el modal */
-        .modal {
-            display: none; /* Ocultar por defecto */
-            position: fixed;
-            z-index: 50;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.75); /* Fondo semi-transparente */
-        }
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 8px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <header class="bg-black shadow py-8">
@@ -52,7 +16,7 @@
                     <li><a href="./CVRosana.pdf" class="hover:underline text-white">Sobre mi</a></li>
                     <li><a href="./portafolio.html" class="hover:underline text-white">Portafolio</a></li>
                     <li><a href="#" onclick="handleWhatsAppClick()" class="hover:underline text-white">Contacto</a></li>
-                    <li><button onclick="openModal()" class="hover:underline text-white">Consulta</button></li> <!-- Botón para abrir el modal -->
+                    <li><a href="#consulta" class="hover:underline text-white" onclick="toggleForm()">Consulta</a></li> <!-- Enlace al formulario de consulta -->
                 </ul>
             </nav>
         </div>
@@ -64,19 +28,19 @@
                 <div class="w-full md:w-1/2 lg:w-2/5">
                     <h1 class="text-5xl font-bold mb-4 text-white">Arquitecta <span class="text-blue-500">Rosana Suarez</span></h1>
                     <h2 class="text-2xl mb-4 text-white">Especialista en Investigación Proyectual - Orientación Vivienda</h2>
-                    <p class="text-gray-300 mb-8">Investigación, experimentación y gestión sobre el hábitat doméstico y los modos de habitar para proyectos de vivienda estatal o privada.</p>
+                    <p class="text-gray-300 mb-8">Investigación, experimentación y gestión sobre el habitat domestico y los modos de habitar para proyectos de vivienda estatal o privada </p>
                     <button onclick="handleWhatsAppClick()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        <i class="fab fa-whatsapp"></i> Contacto
+                        <i class="fab fa-whatsapp"></i> <!-- Icono de WhatsApp -->
+                        Contacto
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Modal para el formulario de consulta -->
-        <div id="consultaModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2 class="text-2xl font-bold mb-4">Formulario de Consulta</h2>
+        <!-- Formulario de Consulta -->
+        <section id="consulta" class="bg-gray-100 p-8 hidden" id="consultaSection">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-4">Formulario de Consulta</h2>
                 <form id="consultaForm">
                     <div class="mb-4">
                         <label class="block text-gray-700">¿Qué tipo de trabajo necesitas?</label>
@@ -104,25 +68,19 @@
                         Enviar Consulta
                     </button>
                 </form>
+                <button onclick="toggleForm()" class="mt-4 text-blue-500 hover:underline">Cerrar</button>
             </div>
-        </div>
+        </section>
     </main>
 
+    <script src="app.js"></script>
     <script>
-        const handleWhatsAppClick = () => {
-            const phoneNumber = '5491133212191'; // Reemplaza con tu número de teléfono
-            window.open(`https://wa.me/${phoneNumber}`, '_blank');
-        };
+        function toggleForm() {
+            const formSection = document.getElementById('consultaSection');
+            formSection.classList.toggle('hidden');
+        }
 
-        const openModal = () => {
-            document.getElementById('consultaModal').style.display = 'block';
-        };
-
-        const closeModal = () => {
-            document.getElementById('consultaModal').style.display = 'none';
-        };
-
-        const sendWhatsAppMessage = () => {
+        function sendWhatsAppMessage() {
             const tipoTrabajo = document.getElementById('tipoTrabajo').value;
             const presupuesto = document.getElementById('presupuesto').value;
             const ubicacion = document.getElementById('ubicacion').value;
@@ -133,16 +91,8 @@
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
             window.open(url, '_blank');
-            closeModal(); // Cerrar el modal después de enviar
-        };
-
-        // Cerrar el modal al hacer clic en el área fuera del modal
-        window.onclick = function(event) {
-            const modal = document.getElementById('consultaModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        };
+        }
     </script>
 </body>
 </html>
+
