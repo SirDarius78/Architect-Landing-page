@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
         consultaSection.classList.toggle('hidden');
     };
 
-    // Attach the click handler to the button with the 'consulta' class
-    const consultaLink = document.querySelector('a[href="#consultaSection"]');
-    if (consultaLink) {
-        consultaLink.addEventListener("click", toggleConsulta);
-    }
+    // Attach the click handler to the consultation link
+    const consultaLink = document.getElementById('consultaLink');
+    consultaLink.addEventListener("click", function (e) {
+        e.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+        toggleConsulta(); // Llama a la función para abrir o cerrar el formulario
+    });
 });
 
 // Function to send WhatsApp message
