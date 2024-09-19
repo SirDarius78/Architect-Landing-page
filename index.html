@@ -41,10 +41,10 @@
         <section id="consulta" class="bg-gray-100 p-8">
             <div class="container mx-auto">
                 <h2 class="text-3xl font-bold mb-4">Formulario de Consulta</h2>
-                <form action="mailto:tuemail@gmail.com" method="post" enctype="text/plain">
+                <form id="consultaForm">
                     <div class="mb-4">
                         <label class="block text-gray-700">¿Qué tipo de trabajo necesitas?</label>
-                        <select name="tipoTrabajo" class="form-select mt-1 block w-full">
+                        <select id="tipoTrabajo" name="tipoTrabajo" class="form-select mt-1 block w-full">
                             <option value="remodelar">Remodelar</option>
                             <option value="reparar">Reparar</option>
                             <option value="construir">Construir</option>
@@ -54,17 +54,17 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700">Presupuesto aproximado</label>
-                        <input type="text" name="presupuesto" class="form-input mt-1 block w-full" placeholder="Ej. $10,000">
+                        <input type="text" id="presupuesto" name="presupuesto" class="form-input mt-1 block w-full" placeholder="Ej. $10,000">
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700">Ubicación del trabajo</label>
-                        <input type="text" name="ubicacion" class="form-input mt-1 block w-full" placeholder="Ciudad y provincia">
+                        <input type="text" id="ubicacion" name="ubicacion" class="form-input mt-1 block w-full" placeholder="Ciudad y provincia">
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700">Descripción adicional</label>
-                        <textarea name="descripcion" class="form-textarea mt-1 block w-full" rows="3" placeholder="Detalles adicionales sobre el proyecto..."></textarea>
+                        <textarea id="descripcion" name="descripcion" class="form-textarea mt-1 block w-full" rows="3" placeholder="Detalles adicionales sobre el proyecto..."></textarea>
                     </div>
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <button type="button" onclick="sendWhatsAppMessage()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Enviar Consulta
                     </button>
                 </form>
@@ -73,6 +73,20 @@
     </main>
 
     <script src="app.js"></script>
+    <script>
+        function sendWhatsAppMessage() {
+            const tipoTrabajo = document.getElementById('tipoTrabajo').value;
+            const presupuesto = document.getElementById('presupuesto').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const descripcion = document.getElementById('descripcion').value;
+
+            const phoneNumber = '5491133212191'; // Reemplaza con tu número de teléfono
+            const message = `Consulta:\nTipo de Trabajo: ${tipoTrabajo}\nPresupuesto: ${presupuesto}\nUbicación: ${ubicacion}\nDescripción: ${descripcion}`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
 
