@@ -22,7 +22,7 @@
                             <i class="fab fa-whatsapp fa-lg"></i> <!-- Icono de WhatsApp -->
                         </a>
                     </li>
-                    <li><a href="#consulta" class="hover:underline text-white">Consulta</a></li>
+                    <li><a href="#consulta" onclick="toggleConsulta(event)" class="hover:underline text-white">Consulta</a></li>
                 </ul>
             </nav>
         </div>
@@ -44,8 +44,8 @@
         </section>
 
         <!-- Formulario de Consulta -->
-        <section id="consulta" class="bg-gray-100 p-8">
-            <div class="container mx-auto relative" id="consultaSection">
+        <section id="consulta" class="bg-gray-100 p-8 hidden" id="consultaSection">
+            <div class="container mx-auto relative">
                 <h2 class="text-3xl font-bold mb-4">Formulario de Consulta</h2>
                 <button onclick="toggleConsulta()" class="absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold text-lg">
                     &times; <!-- Icono de cierre -->
@@ -96,9 +96,12 @@
             window.open(url, '_blank');
         }
 
-        function toggleConsulta() {
+        function toggleConsulta(event) {
             const consultaSection = document.getElementById('consultaSection');
-            consultaSection.style.display = consultaSection.style.display === 'none' ? 'block' : 'none';
+            consultaSection.classList.toggle('hidden');
+            if (event) {
+                event.preventDefault(); // Evita el comportamiento por defecto del enlace
+            }
         }
     </script>
 </body>
