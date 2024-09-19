@@ -6,6 +6,7 @@
     <title>Rosana Suarez - Arquitecta</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Importación de Font Awesome para los íconos -->
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <header class="bg-black shadow py-8">
@@ -15,7 +16,12 @@
                 <ul class="flex space-x-4">
                     <li><a href="./CVRosana.pdf" class="hover:underline text-white">Sobre mi</a></li>
                     <li><a href="./portafolio.html" class="hover:underline text-white">Portafolio</a></li>
-                    <li><a href="#" onclick="handleWhatsAppClick()" class="hover:underline text-white">Contacto</a></li>
+                    <li>
+                        <!-- Botón de WhatsApp -->
+                        <button onclick="handleWhatsAppClick()" class="bg-green-500 text-white p-4 rounded-full cursor-pointer">
+                            <i class="fab fa-whatsapp fa-lg"></i>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -34,10 +40,17 @@
                 </div>
             </div>
         </section>
-
-        <!-- Otras secciones siguen aquí -->
     </main>
+
+    <script>
+        // Función para abrir WhatsApp con el número indicado
+        const handleWhatsAppClick = () => {
+            const phoneNumber = '5491133212191'; // Reemplaza por el número real con el código de país
+            window.open(`https://wa.me/${phoneNumber}`, '_blank');
+        };
+    </script>
 
     <script src="app.js"></script>
 </body>
 </html>
+
